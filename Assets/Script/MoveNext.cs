@@ -3,8 +3,10 @@ using System.Collections;
 
 public class MoveNext : MonoBehaviour
 {
+    // IEnumerator型の変数を宣言
     private IEnumerator _Enumerator;
 
+    float _time;
     void Start()
     {
         _Enumerator = CustomProcess();
@@ -12,28 +14,34 @@ public class MoveNext : MonoBehaviour
 
     IEnumerator CustomProcess()
     {
+        // 1
         Debug.Log("wait");
-        yield return null;
+        yield return null; // resultにtrueを返す
 
-        Debug.Log("Complete!!!");
-        yield break;
+        // 2
+        Debug.Log("Complete");
+        yield break; // resultにfalseを返す
     }
 
     void Update()
     {
-        if (_Enumerator != null)
+        _time += Time.deltaTime;
+        // 3秒まってからMoveNext();を呼ぶ
+        if (_time > 3f)
         {
-            // 次のフレームへ進める
-            bool result = _Enumerator.MoveNext();
-            if (result)
+            if (_Enumerator != null)
             {
-                Debug.Log("Next.");
-            }
-            else
-            {
-                // コルーチン終了。
-                Debug.Log("End.");
-                _Enumerator = null;
+                bool result = _Enumerator.MoveNext(); // このタイミングで1の処理が走る
+                if (result)
+                {
+                    Debug.Log("Next"); // 2に移動
+                }
+                else // returnされなかったためresultがfalseになる
+                {
+                    // コルーチン終了
+                    Debug.Log("End.");
+                    _Enumerator = null;
+                }
             }
         }
     }

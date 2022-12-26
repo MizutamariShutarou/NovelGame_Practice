@@ -17,26 +17,26 @@ public class SampleCoroutine : MonoBehaviour
         {
             var t = 0F;
 
-            // X²‚Ì‰ñ“]‚ğ2•bŠÔ
+            // Xè»¸ã®å›è»¢ã‚’2ç§’é–“
             yield return RotateAsync(Vector3.right, 2);
 
-            // 1•bŠÔ‘Ò‹@‚·‚é
+            // 1ç§’é–“å¾…æ©Ÿã™ã‚‹
             //yield return new WaitForSeconds(1);
 
             //yield return WaitForSecondOrCrick();
 
             yield return AllWait();
 
-            // Y²‚Ì‰ñ“]‚ğ2•bŠÔ
+            // Yè»¸ã®å›è»¢ã‚’2ç§’é–“
             yield return RotateAsync(Vector3.up, 2);
 
-            // 1•bŠÔ‘Ò‹@‚·‚é
+            // 1ç§’é–“å¾…æ©Ÿã™ã‚‹
             yield return new WaitForSeconds(1);
 
-            // Z²‚Ì‰ñ“]‚ğ2•bŠÔ
+            // Zè»¸ã®å›è»¢ã‚’2ç§’é–“
             yield return RotateAsync(Vector3.forward, 2);
 
-            // 1•bŠÔ‘Ò‹@‚·‚é
+            // 1ç§’é–“å¾…æ©Ÿã™ã‚‹
             yield return new WaitForSeconds(1);
         }
 
